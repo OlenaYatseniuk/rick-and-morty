@@ -1,45 +1,84 @@
-.gallery__item {
-    width: 240px;
-    // width: calc((100% - 240px) / 4);
-    background-color: '#fff';
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
-    border-radius: 4px;
-    cursor: pointer;
+.character {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 31px;
 }
 
-.gallery__item:hover {
-    transform: scale(1.03);
-    cursor: zoom-in;
+.character__imgWrapper {
+    width: 300px;
+    // height: 300px;
+    border: 5px solid #F2F2F7;
+    border-radius: 150px;
+
 }
 
-.gallery__image {
+.character__image {
     width: 100%;
-    height: 188px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    height: 300px;
+    border-radius: 150px;
 }
 
-.gallery__info {
-    padding: 12px 16px;
+.character__titleInfo {
+    margin-top: 16px;
 }
 
-.gallery__name {
+.character__name {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 56px;
+    text-align: center;
+    color: #081F32;
+}
+
+.character__title {
+    margin-top: 48px;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
-    line-height: 30px;
+    line-height: 24px;
+    text-align: center;
     letter-spacing: 0.15px;
-    color: rgba(0, 0, 0, 0.9);
+    color: #8E8E93;
 }
 
-.gallery__species {
+.character__info {
+    margin-top: 48px;
+}
+
+.character__infoItem {
+    width: 413px;
+    padding: 9px 16px 12px 16px;
+}
+
+.character__infoTitleName {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+
+    color: #081F32;
+}
+
+.character__infoBio {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 21px;
+    line-height: 20px;
     letter-spacing: 0.25px;
+    text-transform: capitalize;
 
-    color: rgba(0, 0, 0, 0.6);
+    color: #6E798C;
+}
+
+.example {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #8a95a6ad;
 }
