@@ -1,4 +1,13 @@
+@import "src/styles/variables.scss";
+@import "src/styles/mixin.scss";
+
 .container {
+    @include media(mobile-only) {
+        width: 312px;
+        padding: 0 24px;
+        max-width: $mobile;
+    }
+
     max-width: 1060px;
     margin: 0 auto;
     padding: 0 20px;

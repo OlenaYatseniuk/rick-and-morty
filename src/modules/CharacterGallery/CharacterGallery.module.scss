@@ -1,18 +1,32 @@
+@import "src/styles/variables.scss";
+@import "src/styles/mixin.scss";
+
 .gallery {
+    @include media(mobile-only) {
+        width: 100%;
+        margin-top: 32px;
+        gap: 0;
+    }
+
     margin-top: 61px;
     margin-bottom: 188px;
-    // margin-left: auto;
-    // margin-right: auto;
     display: flex;
     flex-wrap: wrap;
     gap: 24px 20px;
-    width: 1020px;
+    max-width: 1020px;
 }
 
 .gallery__item {
+    @include media(mobile-only) {
+        width: 100%;
+        margin-bottom: 32px;
+    }
+
     width: 240px;
-    background-color: '#fff';
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+    background-color: "#fff";
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2),
+    0px 3px 4px rgba(0, 0, 0, 0.12),
+    0px 2px 4px rgba(0, 0, 0, 0.14);
     border-radius: 4px;
     cursor: pointer;
 }
@@ -27,6 +41,10 @@
 }
 
 .gallery__image {
+    @include media(mobile-only) {
+        height: 232px;
+    }
+
     width: 100%;
     height: 188px;
     border-top-left-radius: 4px;
@@ -38,7 +56,7 @@
 }
 
 .gallery__name {
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -48,7 +66,7 @@
 }
 
 .gallery__species {
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-style: normal;
     font-weight: 400;
     font-size: 14px;

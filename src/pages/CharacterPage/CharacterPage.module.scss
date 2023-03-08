@@ -1,16 +1,16 @@
+@import "src/styles/variables.scss";
+@import "src/styles/mixin.scss";
+
 .wrapper {
+    @include media(mobile-only) {
+        margin-top: 23px;
+    }
+
     margin-top: 21px;
 }
 
-// .linkWrapper {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-// }
-
 .linkBack {
-
-    font-family: 'Karla';
+    font-family: "Karla";
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -20,9 +20,12 @@
     color: black;
     align-items: center;
     display: flex;
-
 }
 
 span {
+    @include media(mobile-only) {
+        margin-left: 8px;
+    }
+
     margin-left: 15px;
 }
