@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
-import CharacterItem from "../../modules/CharacterItem/CharacterItem";
+
 import { getCharacterById } from "../../services/api";
+
 import Container from "../../shared/Container/Container";
 import Loader from "../../shared/Loader/Loader";
-import { FiArrowLeft } from "react-icons/fi";
+import CharacterItem from "../../modules/CharacterItem/CharacterItem";
 
+import { FiArrowLeft } from "react-icons/fi";
 import s from "./CharacterPage.module.scss";
 
 const CharacterPage = () => {

@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+
 import s from "./CharacterGallery.module.scss";
 
 const CharacterGallery = ({ items }) => {

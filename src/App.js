@@ -1,8 +1,9 @@
-import "./styles/index.scss";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 import HomePage from "./pages/HomePage/HomePage";
-import { Route, Routes, Navigate } from "react-router-dom";
 import CharacterPage from "./pages/CharacterPage/CharacterPage";
+
+import "./styles/index.scss";
 
 function App() {
   return (

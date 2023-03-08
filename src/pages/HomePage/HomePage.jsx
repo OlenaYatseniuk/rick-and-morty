@@ -1,20 +1,24 @@
 import { useEffect, useMemo, useState } from "react";
-import CharacterGallery from "../../modules/CharacterGallery/CharacterGallery";
-import { getAllCharacters, getCharactersByName } from "../../services/api";
+import { useSearchParams } from "react-router-dom";
+
 import { useMediaQuery } from "react-responsive";
+
+import { getAllCharacters, getCharactersByName } from "../../services/api";
+
 import Container from "../../shared/Container/Container";
+import Loader from "../../shared/Loader/Loader";
+import CharacterGallery from "../../modules/CharacterGallery/CharacterGallery";
+import Searchbar from "../../modules/SearchBar/SearchBar";
+
 import logoDesktop from "../../assets/images/logo-desktop.png";
 import logoMobile from "../../assets/images/logo-mobile.png";
 import s from "./HomePage.module.scss";
-import Searchbar from "../../modules/SearchBar/SearchBar";
-import Loader from "../../shared/Loader/Loader";
-import { useSearchParams } from "react-router-dom";
 
 const HomePage = () => {
   const [characters, setCharacters] = useState([]);
   const [filteredCharacters, setFilteredCharacters] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('query') ?? '';
+  const query = searchParams.get("query") ?? "";
 
   const [isLoading, setIsLoading] = useState(true);
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -28,17 +32,17 @@ const HomePage = () => {
   useEffect(() => {
     (async () => {
       setIsLoading(true);
-        const data = await getAllCharacters();
-        setIsLoading(false);
-        setCharacters(data.results);
+      const data = await getAllCharacters();
+      setIsLoading(false);
+      setCharacters(data.results);
     })();
   }, []);
 
   useEffect(() => {
     (async () => {
-      console.log('query', query)
+      console.log("query", query);
       if (query) {
-        console.log('query', query)
+        console.log("query", query);
         const res = await searchByName(query);
         if (!res) {
           console.log(res);
@@ -46,7 +50,7 @@ const HomePage = () => {
         }
       }
     })();
-  },[query, setSearchParams])
+  }, [query, setSearchParams]);
 
   const searchByName = async (query) => {
     setIsLoading(true);
