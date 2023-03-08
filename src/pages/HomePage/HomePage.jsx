@@ -12,6 +12,7 @@ import Searchbar from "../../modules/SearchBar/SearchBar";
 
 import logoDesktop from "../../assets/images/logo-desktop.png";
 import logoMobile from "../../assets/images/logo-mobile.png";
+import { toast } from "react-toastify";
 import s from "./HomePage.module.scss";
 
 const HomePage = () => {
@@ -44,10 +45,19 @@ const HomePage = () => {
       if (query) {
         console.log("query", query);
         const res = await searchByName(query);
+        console.log(res.data);
         if (!res) {
           console.log(res);
           setSearchParams({});
+          toast.error(
+            "Sorry, the are no characters by your search. Please try to search another name"
+          );
         }
+        toast.success(
+          `Wow! We found ${res.data.info.count} ${
+            res.data.info.count > 1 ? "characters" : "character"
+          } for you!`
+        );
       }
     })();
   }, [query, setSearchParams]);
