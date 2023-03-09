@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
 import PublicRoute from "./shared/PublicRoute/PublicRoute";
@@ -14,7 +14,7 @@ const CharacterPage = lazy(() => import("./pages/CharacterPage/CharacterPage"));
 
 function App() {
   return (
-    <>
+    <Suspense fallback={null}>
       <Routes>
         <Route
           path="/login"
@@ -34,7 +34,7 @@ function App() {
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <ToastContainer autoClose={2000} transition={Slide} />
-    </>
+    </Suspense>
   );
 }
 

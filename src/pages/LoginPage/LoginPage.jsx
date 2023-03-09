@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 
 import { useMediaQuery } from "react-responsive";
+import { toast } from "react-toastify";
 
 import Container from "../../shared/Container/Container";
 import logoDesktop from "../../assets/images/logo-desktop.png";
@@ -26,7 +27,10 @@ function LoginPage() {
   useEffect(() => {
     console.log("user", user);
     if (user) {
-      localStorage.setItem("token", JSON.stringify(user.access_token));
+        localStorage.setItem("token", JSON.stringify(user.access_token));
+        toast.success(
+          'Hi,there! We glad to see you again!'
+        );
       navigate("/", { replace: true });
     }
   }, [user, navigate]);
