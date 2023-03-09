@@ -14,8 +14,14 @@ import logoDesktop from "../../assets/images/logo-desktop.png";
 import logoMobile from "../../assets/images/logo-mobile.png";
 import { toast } from "react-toastify";
 import s from "./HomePage.module.scss";
+// import PaginatedItems from "../../modules/Pagination/Pagination";
+// import ReactPaginate from "react-paginate";
+
+// const PER_PAGE = 10;
 
 const HomePage = () => {
+  // const [currentPage, setCurrentPage] = useState(0);
+  // const [data, setData] = useState([]);
   const [characters, setCharacters] = useState([]);
   const [filteredCharacters, setFilteredCharacters] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,6 +29,8 @@ const HomePage = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const isMobile = useMediaQuery({ maxWidth: 767 });
+
+  // const [pageCount, setPageCount] = useState(0);
 
   const sortedCharacters = useMemo(
     () =>
@@ -36,7 +44,9 @@ const HomePage = () => {
       const data = await getAllCharacters();
       setIsLoading(false);
       setCharacters(data.results);
+      // setPageCount(data.info.pages);
     })();
+    // console.log('pageCount',pageCount)
   }, []);
 
   useEffect(() => {
@@ -45,7 +55,6 @@ const HomePage = () => {
       if (query) {
         console.log("query", query);
         const res = await searchByName(query);
-        console.log(res.data);
         if (!res) {
           console.log(res);
           setSearchParams({});
@@ -76,6 +85,16 @@ const HomePage = () => {
     return data;
   };
 
+  //   function handlePageClick({ selected: selectedPage }) {
+  //   setCurrentPage(selectedPage);
+  // }
+  // const offset = currentPage * PER_PAGE;
+
+  // const currentPageData = characters
+  //   .slice(offset, offset + PER_PAGE)
+
+  
+
   if (isLoading) {
     return <Loader />;
   }
@@ -92,6 +111,17 @@ const HomePage = () => {
             filteredCharacters?.length ? filteredCharacters : sortedCharacters
           }
         />
+        {/* <ReactPaginate
+        previousLabel={"← Previous"}
+        nextLabel={"Next →"}
+        pageCount={pageCount}
+        onPageChange={handlePageClick}
+        containerClassName={"pagination"}
+        previousLinkClassName={"pagination__link"}
+        nextLinkClassName={"pagination__link"}
+        disabledClassName={"pagination__link--disabled"}
+        activeClassName={"pagination__link--active"}
+      /> */}
       </Container>
     </div>
   );

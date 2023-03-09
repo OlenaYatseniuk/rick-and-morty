@@ -1,0 +1,38 @@
+@import "src/styles/variables.scss";
+@import "src/styles/mixin.scss";
+
+.loginWrapper {
+    @include media(mobile-only) {
+        margin: 70px auto;
+        width: 265px;
+        height: 400px;
+    }
+
+    margin: 80px auto;
+    padding: 50px 30px;
+    width: 500px;
+    height: 300px;
+    border: 1px solid rgb(16, 214, 16);
+    border-radius: 50px;
+    background: linear-gradient(#38b90a,
+        #2d9ee4);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+}
+
+.logo {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.loginTitle {
+    color: #053352;
+    text-align: start;
+}
+
+.loginButton {
+    margin: 50px auto;
+    display: flex;
+    height: 35px;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
