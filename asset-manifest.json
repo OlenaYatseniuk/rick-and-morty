@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/rick-and-morty/static/css/main.31ced41a.css",
-    "main.js": "/rick-and-morty/static/js/main.817c8230.js",
+    "main.js": "/rick-and-morty/static/js/main.d417f49c.js",
     "static/css/687.1dbe0815.chunk.css": "/rick-and-morty/static/css/687.1dbe0815.chunk.css",
     "static/js/687.a541fa41.chunk.js": "/rick-and-morty/static/js/687.a541fa41.chunk.js",
     "static/css/948.1b74eeb8.chunk.css": "/rick-and-morty/static/css/948.1b74eeb8.chunk.css",
-    "static/js/948.69addb45.chunk.js": "/rick-and-morty/static/js/948.69addb45.chunk.js",
+    "static/js/948.f9aa77a1.chunk.js": "/rick-and-morty/static/js/948.f9aa77a1.chunk.js",
     "static/css/560.a67b231f.chunk.css": "/rick-and-morty/static/css/560.a67b231f.chunk.css",
     "static/js/560.80fcce5e.chunk.js": "/rick-and-morty/static/js/560.80fcce5e.chunk.js",
     "static/js/384.54352c6a.chunk.js": "/rick-and-morty/static/js/384.54352c6a.chunk.js",
@@ -16,11 +16,11 @@
     "static/media/logo-mobile.png": "/rick-and-morty/static/media/logo-mobile.5843d2192365561e07bd.png",
     "index.html": "/rick-and-morty/index.html",
     "main.31ced41a.css.map": "/rick-and-morty/static/css/main.31ced41a.css.map",
-    "main.817c8230.js.map": "/rick-and-morty/static/js/main.817c8230.js.map",
+    "main.d417f49c.js.map": "/rick-and-morty/static/js/main.d417f49c.js.map",
     "687.1dbe0815.chunk.css.map": "/rick-and-morty/static/css/687.1dbe0815.chunk.css.map",
     "687.a541fa41.chunk.js.map": "/rick-and-morty/static/js/687.a541fa41.chunk.js.map",
     "948.1b74eeb8.chunk.css.map": "/rick-and-morty/static/css/948.1b74eeb8.chunk.css.map",
-    "948.69addb45.chunk.js.map": "/rick-and-morty/static/js/948.69addb45.chunk.js.map",
+    "948.f9aa77a1.chunk.js.map": "/rick-and-morty/static/js/948.f9aa77a1.chunk.js.map",
     "560.a67b231f.chunk.css.map": "/rick-and-morty/static/css/560.a67b231f.chunk.css.map",
     "560.80fcce5e.chunk.js.map": "/rick-and-morty/static/js/560.80fcce5e.chunk.js.map",
     "384.54352c6a.chunk.js.map": "/rick-and-morty/static/js/384.54352c6a.chunk.js.map",
@@ -30,6 +30,6 @@
   },
   "entrypoints": [
     "static/css/main.31ced41a.css",
-    "static/js/main.817c8230.js"
+    "static/js/main.d417f49c.js"
   ]
 }
