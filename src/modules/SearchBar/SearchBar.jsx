@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { FaSistrix } from "react-icons/fa";
@@ -6,27 +5,16 @@ import s from "./SearchBar.module.scss";
 
 function Searchbar({ filter }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [query, setQuery] = useState(searchParams.get("query") ?? "");
+  const query = searchParams.get("query") ?? "";
 
   const handleChangeInput = (event) => {
     const { value } = event.target;
-    setQuery(value);
-    // if (value.trim()) {
-    //   setSearchParams({ query: value });
-    // }
-    // filter(value);
+    setSearchParams({ query: value });
   };
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
     console.log(query);
-    if (!query) {
-      setSearchParams({});
-    }
-    if (query.trim()) {
-      setSearchParams({ query });
-    }
-    filter(query);
   };
 
   return (

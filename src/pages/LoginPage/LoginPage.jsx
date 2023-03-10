@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 
 import { useMediaQuery } from "react-responsive";
 import { toast } from "react-toastify";
@@ -51,34 +51,7 @@ function LoginPage() {
         console.log(error);
       }
     })();
-    // if (user) {
-    //     localStorage.setItem("token", JSON.stringify(user.access_token));
-    //     toast.success(
-    //       'Hi,there! We glad to see you again!'
-    //     );
-    //     axios
-    //     .get(
-    //       `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
-    //       {
-    //         headers: {
-    //           Authorization: `Bearer ${user.access_token}`,
-    //           Accept: 'application/json',
-    //         },
-    //       }
-    //     )
-    //     .then(res => {
-    //         setUserData(res.data);
-    //         console.log('userData',userData)
-    //     })
-    //   navigate("/", { replace: true });
-    // }
   }, [user, navigate]);
-
-  // log out function to log the user out of google and set the profile array to null
-  // const logOut = () => {
-  //     googleLogout();
-  //     setProfile(null);
-  // };
 
   return (
     <Container>

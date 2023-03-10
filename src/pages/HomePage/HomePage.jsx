@@ -27,10 +27,12 @@ const HomePage = () => {
   const [filteredCharacters, setFilteredCharacters] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+
   const query = searchParams.get("query") ?? "";
   const name = localStorage.getItem("name")
     ? JSON.parse(localStorage.getItem("name"))
     : null;
+  
   const [isLoading, setIsLoading] = useState(true);
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
@@ -100,6 +102,7 @@ const HomePage = () => {
     localStorage.removeItem("name");
     navigate("/login", { replace: true });
   };
+
   //   function handlePageClick({ selected: selectedPage }) {
   //   setCurrentPage(selectedPage);
   // }
