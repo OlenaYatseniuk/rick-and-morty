@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
+import { googleLogout } from "@react-oauth/google";
 import { useMediaQuery } from "react-responsive";
 
 import { getAllCharacters, getCharactersByName } from "../../services/api";
@@ -25,8 +26,11 @@ const HomePage = () => {
   const [characters, setCharacters] = useState([]);
   const [filteredCharacters, setFilteredCharacters] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const query = searchParams.get("query") ?? "";
-
+  const name = localStorage.getItem("name")
+    ? JSON.parse(localStorage.getItem("name"))
+    : null;
   const [isLoading, setIsLoading] = useState(true);
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
@@ -51,21 +55,26 @@ const HomePage = () => {
 
   useEffect(() => {
     (async () => {
-      console.log("query", query);
-      if (query) {
-        console.log("query", query);
-        const res = await searchByName(query);
-        if (!res) {
-          console.log(res);
-          setSearchParams({});
-          toast.error(
-            "Sorry, the are no characters by your search. Please try to search another name"
+      try {
+        if (query) {
+          console.log("query", query);
+          const res = await searchByName(query);
+          if (!res) {
+            console.log(res);
+            setSearchParams({});
+            toast.error(
+              "Sorry, the are no characters by your search. Please try to search another name"
+            );
+          }
+          toast.success(
+            `Wow! We found ${res.data.info.count} ${
+              res.data.info.count > 1 ? "characters" : "character"
+            } for you!`
           );
         }
-        toast.success(
-          `Wow! We found ${res.data.info.count} ${
-            res.data.info.count > 1 ? "characters" : "character"
-          } for you!`
+      } catch (error) {
+        toast.error(
+          "Sorry, the are no characters by your search. Please try to search another name"
         );
       }
     })();
@@ -85,6 +94,12 @@ const HomePage = () => {
     return data;
   };
 
+  const logOut = () => {
+    googleLogout();
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    navigate("/login", { replace: true });
+  };
   //   function handlePageClick({ selected: selectedPage }) {
   //   setCurrentPage(selectedPage);
   // }
@@ -93,8 +108,6 @@ const HomePage = () => {
   // const currentPageData = characters
   //   .slice(offset, offset + PER_PAGE)
 
-  
-
   if (isLoading) {
     return <Loader />;
   }
@@ -102,6 +115,12 @@ const HomePage = () => {
   return (
     <div className={s.wrapper}>
       <Container>
+        <div className={s.info}>
+          <div className={s.name}>Hello, {name}!</div>
+          <button className={s.loginButton} onClick={() => logOut()}>
+            Log Out with Google
+          </button>
+        </div>
         <div className={s.logo}>
           <img alt="logo" src={isMobile ? logoMobile : logoDesktop} />
         </div>
@@ -111,17 +130,6 @@ const HomePage = () => {
             filteredCharacters?.length ? filteredCharacters : sortedCharacters
           }
         />
-        {/* <ReactPaginate
-        previousLabel={"← Previous"}
-        nextLabel={"Next →"}
-        pageCount={pageCount}
-        onPageChange={handlePageClick}
-        containerClassName={"pagination"}
-        previousLinkClassName={"pagination__link"}
-        nextLinkClassName={"pagination__link"}
-        disabledClassName={"pagination__link--disabled"}
-        activeClassName={"pagination__link--active"}
-      /> */}
       </Container>
     </div>
   );

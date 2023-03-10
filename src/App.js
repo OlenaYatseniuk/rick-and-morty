@@ -7,6 +7,7 @@ import PrivateRoute from "./shared/PrivateRoute/PrivateRoute";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./styles/index.scss";
+import Loader from "./shared/Loader/Loader";
 
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -14,7 +15,7 @@ const CharacterPage = lazy(() => import("./pages/CharacterPage/CharacterPage"));
 
 function App() {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route
           path="/login"

@@ -11,6 +11,10 @@ function Searchbar({ filter }) {
   const handleChangeInput = (event) => {
     const { value } = event.target;
     setQuery(value);
+    // if (value.trim()) {
+    //   setSearchParams({ query: value });
+    // }
+    // filter(value);
   };
 
   const handleSubmitForm = (event) => {

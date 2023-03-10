@@ -9,6 +9,7 @@ import Container from "../../shared/Container/Container";
 import logoDesktop from "../../assets/images/logo-desktop.png";
 import logoMobile from "../../assets/images/logo-mobile.png";
 import s from "./LoginPage.module.scss";
+import axios from "axios";
 
 function LoginPage() {
   const [user, setUser] = useState(
@@ -26,13 +27,51 @@ function LoginPage() {
 
   useEffect(() => {
     console.log("user", user);
-    if (user) {
-        localStorage.setItem("token", JSON.stringify(user.access_token));
-        toast.success(
-          'Hi,there! We glad to see you again!'
-        );
-      navigate("/", { replace: true });
-    }
+    (async () => {
+      try {
+        if (user) {
+          localStorage.setItem("token", JSON.stringify(user.access_token));
+          toast.success("Hi,there! We glad to see you again!");
+          await axios
+            .get(
+              `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${user.access_token}`,
+                  Accept: "application/json",
+                },
+              }
+            )
+            .then((res) => {
+              localStorage.setItem("name", JSON.stringify(res.data.name));
+            });
+          navigate("/", { replace: true });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+    // if (user) {
+    //     localStorage.setItem("token", JSON.stringify(user.access_token));
+    //     toast.success(
+    //       'Hi,there! We glad to see you again!'
+    //     );
+    //     axios
+    //     .get(
+    //       `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
+    //       {
+    //         headers: {
+    //           Authorization: `Bearer ${user.access_token}`,
+    //           Accept: 'application/json',
+    //         },
+    //       }
+    //     )
+    //     .then(res => {
+    //         setUserData(res.data);
+    //         console.log('userData',userData)
+    //     })
+    //   navigate("/", { replace: true });
+    // }
   }, [user, navigate]);
 
   // log out function to log the user out of google and set the profile array to null
@@ -51,7 +90,7 @@ function LoginPage() {
           Login with Google to see information about Rick and Morty characters!
         </h2>
         <button className={s.loginButton} onClick={() => login()}>
-          Sign in with Google 🚀{" "}
+          Log in with Google 🚀{" "}
         </button>
       </div>
     </Container>

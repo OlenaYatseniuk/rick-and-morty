@@ -6,3 +6,31 @@
     max-width: 600px;
     margin: 0 auto;
 }
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginButton {
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    height: 35px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+}
+
+.name {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    color: rgba(0, 0, 0, 0.87);
+}
