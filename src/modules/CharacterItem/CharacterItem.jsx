@@ -3,7 +3,6 @@ import s from "./CharacterItem.module.scss";
 const CharacterItem = ({
   data: { name, species, image, gender, status, type, origin },
 }) => {
-  console.log()
   return (
     <div className={s.character}>
       <div className={s.character__imgWrapper}>

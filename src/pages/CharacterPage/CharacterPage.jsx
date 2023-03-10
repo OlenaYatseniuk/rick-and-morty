@@ -26,7 +26,6 @@ const CharacterPage = () => {
     return <Loader />;
   }
 
-  console.log(characterData);
   if (characterData) {
     return (
       <div className={s.wrapper}>

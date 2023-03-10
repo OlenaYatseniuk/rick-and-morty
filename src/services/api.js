@@ -2,9 +2,9 @@ import axios from "axios";
 
 const BASE_URL = "https://rickandmortyapi.com/api/character";
 
-export const getAllCharacters = async () => {
+export const getAllCharacters = async (page) => {
   try {
-    const { data } = await axios.get(`${BASE_URL}`);
+    const { data } = await axios.get(`${BASE_URL}?page=${page}`);
     return data;
   } catch (error) {
     console.error("Something went wrong" + error.message);
@@ -20,9 +20,9 @@ export const getCharacterById = async (id) => {
   }
 };
 
-export const getCharactersByName = async (query) => {
+export const getCharactersByName = async (query, page) => {
   try {
-    const data = await axios.get(`${BASE_URL}/?name=${query}`);
+    const data = await axios.get(`${BASE_URL}/?name=${query}&page=${page}`);
     return data;
   } catch (error) {
     console.error("Something went wrong in searching by name" + error.message);

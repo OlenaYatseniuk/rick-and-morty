@@ -14,7 +14,6 @@ function Searchbar({ filter }) {
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
-    console.log(query);
   };
 
   return (

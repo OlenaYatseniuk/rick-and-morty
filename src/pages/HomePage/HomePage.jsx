@@ -14,29 +14,39 @@ import Searchbar from "../../modules/SearchBar/SearchBar";
 import logoDesktop from "../../assets/images/logo-desktop.png";
 import logoMobile from "../../assets/images/logo-mobile.png";
 import { toast } from "react-toastify";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import s from "./HomePage.module.scss";
-// import PaginatedItems from "../../modules/Pagination/Pagination";
-// import ReactPaginate from "react-paginate";
-
-// const PER_PAGE = 10;
 
 const HomePage = () => {
-  // const [currentPage, setCurrentPage] = useState(0);
-  // const [data, setData] = useState([]);
   const [characters, setCharacters] = useState([]);
   const [filteredCharacters, setFilteredCharacters] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const currentPage = searchParams.get("page") ?? 1;
 
   const query = searchParams.get("query") ?? "";
+
   const name = localStorage.getItem("name")
     ? JSON.parse(localStorage.getItem("name"))
     : null;
-  
+
   const [isLoading, setIsLoading] = useState(true);
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
-  // const [pageCount, setPageCount] = useState(0);
+  const [pageCount, setPageCount] = useState(1);
+
+  const handleChangePage = (newPage) => {
+    if (query) {
+      setSearchParams({
+        query,
+        page: newPage,
+      });
+    } else {
+      setSearchParams({
+        page: newPage,
+      });
+    }
+  };
 
   const sortedCharacters = useMemo(
     () =>
@@ -47,47 +57,41 @@ const HomePage = () => {
   useEffect(() => {
     (async () => {
       setIsLoading(true);
-      const data = await getAllCharacters();
+      const data = await getAllCharacters(currentPage);
       setIsLoading(false);
       setCharacters(data.results);
-      // setPageCount(data.info.pages);
+      setPageCount(data.info.pages);
     })();
-    // console.log('pageCount',pageCount)
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     (async () => {
       try {
-        if (query) {
-          console.log("query", query);
-          const res = await searchByName(query);
-          if (!res) {
-            console.log(res);
-            setSearchParams({});
-            toast.error(
-              "Sorry, the are no characters by your search. Please try to search another name"
-            );
-          }
-          toast.success(
-            `Wow! We found ${res.data.info.count} ${
-              res.data.info.count > 1 ? "characters" : "character"
-            } for you!`
+        const res = await searchByName(query, currentPage);
+        if (!res) {
+          setSearchParams({});
+          toast.error(
+            "Sorry, the are no characters by your search. Please try to search another name"
           );
         }
+        setPageCount(res.data.info.pages);
+        toast.success(
+          `Wow! We found ${res.data.info.count} ${
+            res.data.info.count > 1 ? "characters" : "character"
+          } for you!`
+        );
       } catch (error) {
         toast.error(
           "Sorry, the are no characters by your search. Please try to search another name"
         );
       }
     })();
-  }, [query, setSearchParams]);
+  }, [query, setSearchParams, currentPage]);
 
-  const searchByName = async (query) => {
+  const searchByName = async (query, currentPage) => {
     setIsLoading(true);
-    const data = await getCharactersByName(query);
+    const data = await getCharactersByName(query, currentPage);
     setIsLoading(false);
-
-    console.log(data, "in search function");
 
     data?.data?.results.sort((first, second) =>
       first.name.localeCompare(second.name)
@@ -102,14 +106,6 @@ const HomePage = () => {
     localStorage.removeItem("name");
     navigate("/login", { replace: true });
   };
-
-  //   function handlePageClick({ selected: selectedPage }) {
-  //   setCurrentPage(selectedPage);
-  // }
-  // const offset = currentPage * PER_PAGE;
-
-  // const currentPageData = characters
-  //   .slice(offset, offset + PER_PAGE)
 
   if (isLoading) {
     return <Loader />;
@@ -133,6 +129,29 @@ const HomePage = () => {
             filteredCharacters?.length ? filteredCharacters : sortedCharacters
           }
         />
+        {pageCount > 1 && (
+          <div className={s.paginationContainer}>
+            <button
+              disabled={Number(currentPage) === 1}
+              className={Number(currentPage) === 1 ? s.disabled : s.button}
+              onClick={() => handleChangePage(Number(currentPage) - 1)}
+            >
+              <MdKeyboardArrowLeft />
+            </button>
+            <p className={s.pageTitle}>
+              Page {currentPage} of {pageCount}
+            </p>
+            <button
+              className={
+                Number(currentPage) === pageCount ? s.disabled : s.button
+              }
+              onClick={() => handleChangePage(Number(currentPage) + 1)}
+              disabled={Number(currentPage) === pageCount}
+            >
+              <MdKeyboardArrowRight />
+            </button>
+          </div>
+        )}
       </Container>
     </div>
   );

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 
 import { useMediaQuery } from "react-responsive";
-import { toast } from "react-toastify";
 
 import Container from "../../shared/Container/Container";
 import logoDesktop from "../../assets/images/logo-desktop.png";
@@ -31,7 +30,6 @@ function LoginPage() {
       try {
         if (user) {
           localStorage.setItem("token", JSON.stringify(user.access_token));
-          toast.success("Hi,there! We glad to see you again!");
           await axios
             .get(
               `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
@@ -48,7 +46,7 @@ function LoginPage() {
           navigate("/", { replace: true });
         }
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
       }
     })();
   }, [user, navigate]);

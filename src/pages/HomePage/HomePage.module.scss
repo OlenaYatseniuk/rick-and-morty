@@ -1,3 +1,6 @@
+@import "src/styles/variables.scss";
+@import "src/styles/mixin.scss";
+
 .wrapper {
     padding-top: 86px;
 }
@@ -24,6 +27,7 @@
     font-family: "Roboto";
     font-style: normal;
     font-weight: 500;
+    color: #3255c7;
 }
 
 .name {
@@ -32,5 +36,88 @@
     font-weight: 500;
     font-size: 20px;
     line-height: 30px;
-    color: rgba(0, 0, 0, 0.87);
+    color: #3255c7;
+}
+
+.paginationContainer {
+    @include media(mobile-only) {
+        max-width: 320px;
+    }
+
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    max-width: 1020px;
+    margin: 0 auto 60px auto;
+}
+
+.button {
+    @include media(mobile-only) {
+        max-width: 50px;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 150px;
+
+    max-width: 208px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.15px;
+    color: #3255c7;
+
+    padding: 4px;
+    border: 1px solid #32c625;
+    border-radius: 4px;
+    margin: 0 auto;
+    background-color: rgba(46, 180, 175, 0.208);
+}
+
+.button:hover,
+.button:focus {
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+}
+
+.disabled {
+    @include media(mobile-only) {
+        max-width: 50px;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 150px;
+
+    max-width: 208px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.15px;
+    color: #4e504ee1;
+
+    padding: 4px;
+    border: 1px solid #585958e1;
+    border-radius: 4px;
+    margin: 0 auto;
+    background-color: rgba(142, 148, 147, 0.12);
+}
+
+.pageTitle {
+    display: inline-block;
+    margin: 0 auto;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.15px;
+    color: #0a99e0;
 }
