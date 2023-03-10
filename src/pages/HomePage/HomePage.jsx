@@ -81,9 +81,7 @@ const HomePage = () => {
           } for you!`
         );
       } catch (error) {
-        toast.error(
-          "Sorry, the are no characters by your search. Please try to search another name"
-        );
+        console.log('Error in searching:', error.message)
       }
     })();
   }, [query, setSearchParams, currentPage]);
